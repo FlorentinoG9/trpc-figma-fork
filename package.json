@@ -1,5 +1,5 @@
 {
-  "name": "trpc-figma",
+  "name": "trpc-figma-adapter",
   "version": "0.2.3",
   "description": "tRPC adapter for figma plugins",
   "exports": {
