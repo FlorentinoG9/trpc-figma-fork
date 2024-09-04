@@ -14,8 +14,14 @@ export const appRouter = t.router({
     .query((req) => {
       return `Hello ${req.input?.text}`;
     }),
-  hello2: t.procedure.mutation(() => {
+  hello2: t.procedure.input(z.object({
+    amount: z.number().optional().default(1),
+  })).mutation(({ input }) => {
     console.log(`Hello World!`);
+    for (let i = 0; i < input.amount; i++) {
+      figma.createRectangle();
+    }
+   
   }),
 });
 

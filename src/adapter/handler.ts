@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   AnyProcedure,
   AnyRouter,
@@ -10,12 +11,12 @@ import { Unsubscribable, isObservable } from "@trpc/server/observable";
 
 import type { TRPCFigmaRequest, TRPCFigmaResponse } from "../types";
 
-export type CreateFigmaContextOptions = {
+ type CreateFigmaContextOptions = {
   req: typeof figma.pluginId;
   res: undefined;
 };
 
-export type CreateFigmaHandlerOptions<TRouter extends AnyRouter> = Pick<
+ type CreateFigmaHandlerOptions<TRouter extends AnyRouter> = Pick<
   BaseHandlerOptions<TRouter, CreateFigmaContextOptions["req"]> &
     NodeHTTPCreateContextOption<
       TRouter,
@@ -25,7 +26,7 @@ export type CreateFigmaHandlerOptions<TRouter extends AnyRouter> = Pick<
   "router" | "createContext" | "onError"
 >;
 
-export const createFigmaHandler = <TRouter extends AnyRouter>(
+ const createFigmaHandler = <TRouter extends AnyRouter>(
   opts: CreateFigmaHandlerOptions<TRouter>
 ) => {
   const { router, createContext, onError } = opts;
@@ -190,7 +191,7 @@ export const createFigmaHandler = <TRouter extends AnyRouter>(
   listeners.push(() => figma.ui.off("message", onMessage));
 };
 
-export function getErrorFromUnknown(cause: unknown): TRPCError {
+ function getErrorFromUnknown(cause: unknown): TRPCError {
   if (cause instanceof Error && cause.name === "TRPCError") {
     return cause as TRPCError;
   }
@@ -214,4 +215,11 @@ export function getErrorFromUnknown(cause: unknown): TRPCError {
   }
 
   return error;
+}
+
+export {
+  createFigmaHandler,
+  getErrorFromUnknown,
+  type CreateFigmaContextOptions,
+  type CreateFigmaHandlerOptions,
 }

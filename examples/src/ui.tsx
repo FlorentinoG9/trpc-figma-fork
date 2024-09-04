@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import  { useState  } from "react";
 import { createRoot } from "react-dom/client";
 import "./ui.css";
 import { trpc } from "./trpc.ui";
@@ -22,13 +22,12 @@ export function App() {
   );
 }
 
-declare function require(path: string): any;
 function AppBak() {
   const testMut = trpc.hello2.useMutation();
   const t = trpc.hello.useQuery({ text: "World" });
 
   const onCreate = () => {
-    testMut.mutate();
+    testMut.mutate({amount: 3});
   };
 
   const onCancel = () => {
@@ -38,7 +37,6 @@ function AppBak() {
   return (
     <main>
       <header>
-        <img src={require("./logo.svg")} />
         <h2>Rectangle Creator</h2>
       </header>
       <section>

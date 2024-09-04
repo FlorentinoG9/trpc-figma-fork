@@ -46,6 +46,7 @@ export const figmaUiLink =
                 type: "data",
                 data: runtime.transformer.deserialize(trpc.result.data),
               }),
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } as any,
           });
 

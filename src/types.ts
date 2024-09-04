@@ -1,4 +1,3 @@
-import { observable } from "@trpc/server/observable";
 import type {
   TRPCClientOutgoingMessage,
   TRPCErrorResponse,
@@ -11,7 +10,7 @@ export type TRPCFigmaRequest = {
 };
 
 export type TRPCFigmaSuccessResponse = {
-  trpc: TRPCResultMessage<any>;
+  trpc: TRPCResultMessage<unknown>;
 };
 
 export type TRPCFigmaErrorResponse = {
